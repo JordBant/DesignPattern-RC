@@ -11,11 +11,7 @@ const ProxyComponent = (props: Props) => {
     model: 'Porsche',
     mileage: '8900 miles',
   }
-  const proxyObj = new Proxy(toyCar, {
-    get: (obj, prop) => {
-      console.log(`The value of ${prop} is ${obj[prop]}`);
-    },
-  })
+  const proxyObj = new Proxy( toyCar, {})
 
   return (
     <div>Proxy</div>
