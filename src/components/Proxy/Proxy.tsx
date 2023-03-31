@@ -1,7 +1,7 @@
 type Props = {}
 
 const ProxyComponent = (props: Props) => {
-  const toyCar = {
+  const Car = {
     wheels: {
       amount: 4,
       metalType: 'Carbon Fiber'
@@ -11,7 +11,7 @@ const ProxyComponent = (props: Props) => {
     model: 'Porsche',
     mileage: '8900 miles',
   }
-  const proxyObj = new Proxy( toyCar, {})
+  const carProxy = new Proxy( Car, {})
 
   return (
     <div>Proxy</div>
