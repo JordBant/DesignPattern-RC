@@ -4,6 +4,6 @@ type Props = {}
 
 export const SingletonComponent = (props: Props) => {
   return (
-    <SingletonComponent />
+    <div>Singleton</div>
   )
 }
