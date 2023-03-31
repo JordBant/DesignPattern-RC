@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import {
-  Singleton,
-  ProxyComponent
-} from './components'
+import { 
+  SingletonDP,
+  ProxyDP,
+} from './containers'
 import './App.css'
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
 
   return (
     <div className="App">
-      <Singleton/>
-      <ProxyComponent/>
+      <SingletonDP/>
+      <ProxyDP/>
     </div>
   )
 }

@@ -1,1 +1,0 @@
-export {default as ProxyComponent} from './Proxy'

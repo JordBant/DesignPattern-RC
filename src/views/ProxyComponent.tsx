@@ -1,6 +1,6 @@
 type Props = {}
 
-const ProxyComponent = (props: Props) => {
+export const ProxyComponent = (props: Props) => {
   const Car = {
     wheels: {
       amount: 4,
@@ -17,5 +17,3 @@ const ProxyComponent = (props: Props) => {
     <div>Proxy</div>
   )
 }
-
-export default ProxyComponent
