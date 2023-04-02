@@ -1,3 +1,4 @@
+import { InputForEstimation } from "../../types/containerTypes"
 import { ProxyComponent } from "../../views/ProxyComponent"
 
 /**
@@ -10,7 +11,7 @@ import { ProxyComponent } from "../../views/ProxyComponent"
 type Props = {}
 
 const ProxyDP = (props: Props) => {
-  const estimationsReady = (viewState) //from UI
+  const estimationsReady = (viewState: InputForEstimation) //from UI
 
   return (
     <ProxyComponent
