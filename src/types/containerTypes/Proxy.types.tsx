@@ -2,6 +2,6 @@ export type CalculatorInput = {
     earningsInput: EarningsInput
     stateUS: StateInput
 }
-export type EstimationTuple = [StateInput, EarningsInput]
-export type EarningsInput = number | undefined
+export type EstimationTuple = [EarningsInput, StateInput]
+export type EarningsInput = string | undefined
 export type StateInput = string | undefined

@@ -9,32 +9,45 @@
  * @params state
  * 
  * Display Params
- * @params estimationsUI
+ * @params [Computed earnings, US State Earnings were calculated for]
  * 
  * @returns
  * 
  */
 
-import { useState, FC } from "react"
+import { useState, useCallback, FC, ChangeEvent } from "react"
 import { CalculatorInput, EstimationTuple } from "../types/containerTypes"
-import { 
-  ProxyComponentProps
-} from "../types/viewTypes"
+import { ProxyComponentProps } from "../types/viewTypes"
+import { useDebounce } from "../utils/hooks"
 
 export const ProxyComponent: FC<ProxyComponentProps> = ({earningsEstimator, earningInState}) => {
-  const [calcInput, setCalcInput] = useState<CalculatorInput | {}>({})
-  const [estimationsUI, setEstimationsUI] = useState< EstimationTuple| null>() //Display info we get earnings back from proxy
+  const [estimationsUI, setEstimationsUI] = useState<EstimationTuple>([...earningInState]) //To display info we get earnings back from proxy
+  const [calcInput, setCalcInput] = useState<CalculatorInput>({
+    earningsInput: '',
+    stateUS: ''
+  })
   
-  //Use Debounce function to lessen re-renders
-  //Use useCallback to update state
+  const calcInputKeysArr = Object.keys(calcInput)
+  const [ destructEarnings, destructStateUS ] = calcInputKeysArr
+  const elevateInputData = useCallback(() => earningsEstimator(calcInput), [calcInput])
+
+  function handleInputUpdate(e: ChangeEvent<HTMLInputElement>, stateProp: string) {
+    if(!calcInputKeysArr.includes(stateProp)) return null
+
+    const debouncedInput = useDebounce(e?.target?.value)
+    setCalcInput({
+      [stateProp]: debouncedInput,
+      ...calcInput
+    })
+  }
 
   return (
     <section className="proxy-container">
       <form action="">
-        <input type="number" name="earnings" />
-        <input type="text" />
+        <input name="earnings" type="number" onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputUpdate(e, destructEarnings)}/>
+        <input name="state" type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputUpdate(e, destructStateUS)}/>
       </form>
-      <button onClick={() => earningsEstimator(calcInput)}>Click to Estimate</button>
+      <button onClick={elevateInputData}>Click to Estimate</button>
     </section>
   )
 }
