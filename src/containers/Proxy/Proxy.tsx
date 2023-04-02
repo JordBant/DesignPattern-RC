@@ -11,7 +11,7 @@ import { ProxyComponent } from "../../views/ProxyComponent"
 type Props = {}
 
 const ProxyDP = (props: Props) => {
-  const estimationsReady = (viewState: InputForEstimation) //from UI
+  const estimationsReady = (viewState: InputForEstimation): {} //from UI
 
   return (
     <ProxyComponent
