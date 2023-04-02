@@ -1,5 +1,6 @@
-import { InputForEstimation } from "../../types/containerTypes"
 import { ProxyComponent } from "../../views/ProxyComponent"
+import { useState } from "react"
+import { CalculatorInput, EstimationTuple } from "../../types/containerTypes"
 
 /**
  * 
@@ -11,12 +12,13 @@ import { ProxyComponent } from "../../views/ProxyComponent"
 type Props = {}
 
 const ProxyDP = (props: Props) => {
-  const estimationsReady = (viewState: InputForEstimation): {} //from UI
+  const [earningsResult, setEarningsResult] = useState<EstimationTuple>({}) // Info to send into UI
+  const estimationsReady = (viewState: CalculatorInput): {} => {} // Executed by user UI
 
   return (
     <ProxyComponent
       earningsEstimator = {estimationsReady}
-      earningInState = {}
+      earningInState = {earningsResult}
     />
   )
 }

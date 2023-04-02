@@ -1,14 +1,14 @@
-export type CalculatorInput = {
-    earningsInput: EarningsInput
-    stateUS: StateInput
-}
+import { CalculatorInput, EstimationTuple } from "../containerTypes"
 
-export type EarningsInput = number | undefined
-export type StateInput = string | undefined
-
-export type EstimationUITuple = [StateInput, EarningsInput] //Better way to type assert this?
-
+/**
+ * @abstract 
+ * View is expecting to accept a tuple it will then parse and display
+ * 
+ * View will also be pushing input up to parent container upon return of 
+ * debounced value and click of button, for 
+ * which state in UI will be reset to null 
+ */
 export type ProxyComponentProps = {
-    earningsEstimator: (earningsInput: EarningsInput) => {} //UI doesn't need to know the return... 
-    earningInState: EstimationUITuple
+    earningsEstimator: (earningsInput: CalculatorInput) => {} //UI doesn't need to know the return... 
+    earningInState: EstimationTuple
 }

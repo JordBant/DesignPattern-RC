@@ -16,16 +16,15 @@
  */
 
 import { useState, FC } from "react"
+import { CalculatorInput, EstimationTuple } from "../types/containerTypes"
 import { 
-  ProxyComponentProps,
-  CalculatorInput,
-  EstimationUITuple
+  ProxyComponentProps
 } from "../types/viewTypes"
 
 export const ProxyComponent: FC<ProxyComponentProps> = ({earningsEstimator, earningInState}) => {
   const [calcInput, setCalcInput] = useState<CalculatorInput | {}>({})
-  const [estimationsUI, setEstimationsUI] = useState< EstimationUITuple| null>() //Display info we get earnings back from proxy
-
+  const [estimationsUI, setEstimationsUI] = useState< EstimationTuple| null>() //Display info we get earnings back from proxy
+  
   //Use Debounce function to lessen re-renders
   //Use useCallback to update state
 
@@ -35,8 +34,7 @@ export const ProxyComponent: FC<ProxyComponentProps> = ({earningsEstimator, earn
         <input type="number" name="earnings" />
         <input type="text" />
       </form>
-
-      
+      <button onClick={() => earningsEstimator(calcInput)}>Click to Estimate</button>
     </section>
   )
 }
