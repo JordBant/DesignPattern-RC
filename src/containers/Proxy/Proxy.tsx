@@ -17,7 +17,7 @@ const ProxyDP: FC =  (
    * to send its user-input respective to which section of the page the user is currently on
    */
 ) => {
-  const [earningsForState, setEarningsProxy] = useState<EstimationTuple>() // Info to send into UI
+  const [earningsForState, setEarningsProxy] = useState</** EstimationTuple */ []>([]) // Info to send into UI
   const calculateUserInputs = {
   }
 
