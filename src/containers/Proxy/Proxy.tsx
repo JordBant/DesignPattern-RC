@@ -11,15 +11,13 @@ import { CalculatorInput, EstimationTuple } from "../../types/containerTypes"
  * 
  */
 
-
-
 const ProxyDP: FC =  (
   /**
    * True Container/Presentational design would be for some User-Persistent Component on APP.tsx 
    * to send its user-input respective to which section of the page the user is currently on
    */
 ) => {
-  const [earningsProxy, setEarningsProxy] = useState<EstimationTuple>() // Info to send into UI
+  const [earningsForState, setEarningsProxy] = useState<EstimationTuple>() // Info to send into UI
   const calculateUserInputs = {
   }
 
@@ -31,7 +29,7 @@ const ProxyDP: FC =  (
   return (
     <ProxyComponent
       earningsEstimator = {userProvidedInfo}
-      earningInState = {earningsResult}
+      earningInState = {earningsForState}
     />
   )
 }
