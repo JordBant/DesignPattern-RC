@@ -1,7 +1,7 @@
 import { ProxyComponent } from "../../views/ProxyComponent"
-import { useState } from "react"
+import { FC, useState } from "react"
 
-//UI acts as data sender
+//UI acts as sender of info
 import { CalculatorInput, EstimationTuple } from "../../types/containerTypes"
 
 /**
@@ -11,17 +11,26 @@ import { CalculatorInput, EstimationTuple } from "../../types/containerTypes"
  * 
  */
 
-type Props = {}
 
-const ProxyDP = (props: Props) => {
-  const [earningsProxy, setEarningsProxy] = useState<EstimationTuple>({}) // Info to send into UI
-  const estimationsReady = (viewState: CalculatorInput): {} => {
 
-  } // Executed by user UI
+const ProxyDP: FC =  (
+  /**
+   * True Container/Presentational design would be for some User-Persistent Component on APP.tsx 
+   * to send its user-input respective to which section of the page the user is currently on
+   */
+) => {
+  const [earningsProxy, setEarningsProxy] = useState<EstimationTuple>() // Info to send into UI
+  const calculateUserInputs = {
+  }
+
+  // Executed by user UI
+  const userProvidedInfo = (viewState: CalculatorInput): {} => {
+    return new Proxy(viewState, calculateUserInputs)
+  } 
 
   return (
     <ProxyComponent
-      earningsEstimator = {estimationsReady}
+      earningsEstimator = {userProvidedInfo}
       earningInState = {earningsResult}
     />
   )

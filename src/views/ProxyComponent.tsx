@@ -11,7 +11,7 @@
  * Display Params
  * @params [Computed earnings, US State Earnings were calculated for]
  * 
- * @returns
+ * @returns 1 to 2 JSX.Elements
  * 
  */
 
@@ -26,15 +26,22 @@ export const ProxyComponent: FC<ProxyComponentProps> = ({earningsEstimator, earn
     earningsInput: '',
     stateUS: ''
   })
-  
+
   const calcInputKeysArr = Object.keys(calcInput)
   const [ destructEarnings, destructStateUS ] = calcInputKeysArr
-  const elevateInputData = useCallback(() => earningsEstimator(calcInput), [calcInput])
+  
+  const elevateInputData = useCallback((e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    earningsEstimator(calcInput)
+  }, [calcInput])
 
-  function handleInputUpdate(e: ChangeEvent<HTMLInputElement>, stateProp: string) {
+  const handleEarningsInput = (e: ChangeEvent<HTMLInputElement>) => handleInputUpdate(e, destructEarnings)
+  const handleStateInput = (e: ChangeEvent<HTMLInputElement>) => handleInputUpdate(e, destructStateUS)
+
+  function handleInputUpdate(e: ChangeEvent<HTMLInputElement>, stateProp: string): null | void {
     if(!calcInputKeysArr.includes(stateProp)) return null
-
     const debouncedInput = useDebounce(e?.target?.value)
+    
     setCalcInput({
       [stateProp]: debouncedInput,
       ...calcInput
@@ -44,8 +51,8 @@ export const ProxyComponent: FC<ProxyComponentProps> = ({earningsEstimator, earn
   return (
     <section className="proxy-container">
       <form action="">
-        <input name="earnings" type="number" onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputUpdate(e, destructEarnings)}/>
-        <input name="state" type="text" onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputUpdate(e, destructStateUS)}/>
+        <input name="earnings" type="number" onChange={handleEarningsInput}/>
+        <input name="state" type="text" onChange={handleStateInput}/>
       </form>
       <button onClick={elevateInputData}>Click to Estimate</button>
     </section>

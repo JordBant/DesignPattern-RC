@@ -3,5 +3,7 @@ export type CalculatorInput = {
     stateUS: StateInput
 }
 export type EstimationTuple = [EarningsInput, StateInput]
+
 export type EarningsInput = string | undefined
+
 export type StateInput = string | undefined
