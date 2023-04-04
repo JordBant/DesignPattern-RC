@@ -19,7 +19,17 @@ const ProxyDP: FC =  (
 ) => {
   const [earningsForState, setEarningsProxy] = useState</** EstimationTuple */ []>([]) // Info to send into UI
   const calculateUserInputs = {
-  }
+    get(target, prop, receive) {
+      // GET state
+      // GET income tax for that state 
+      // Apply income tax for that salary
+      const 
+      return 
+    },
+    set(target, prop) {
+
+    }
+  } 
 
   // Executed by user UI
   const userProvidedInfo = (viewState: CalculatorInput): {} => {

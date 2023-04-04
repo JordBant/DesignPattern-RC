@@ -23,10 +23,10 @@ import { useDebounce } from "../utils/hooks"
 export const ProxyComponent: FC<ProxyComponentProps> = ({earningsEstimator, earningInState}) => {
   const [estimationsUI, setEstimationsUI] = useState<EstimationTuple>([...earningInState]) //To display info we get earnings back from proxy
   const [calcInput, setCalcInput] = useState<CalculatorInput>({
-    earningsInput: '',
+    earningsInput: 0,
     stateUS: ''
   })
-
+  
   const calcInputKeysArr = Object.keys(calcInput)
   const [ destructEarnings, destructStateUS ] = calcInputKeysArr
   
